@@ -6,36 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+
 </head>
 <body>
     <div class="page-header">
         <h1>慕课学生作业成绩评测系统<small>Beta V0.0.1</small></h1>
-      </div>
-      <!-- <div class="upload" style="
-      margin-left: 500px;
-      margin-top: 100px;
-  "> -->
   <div class="uoload">
-    <div class="col-lg-3">
+    <div class="container">
+      <div class="row">
+          <div class="col-lg-3">
+            </div>
+            <div class="col-lg-6">
+              <div class="input-group">
+                <form method="POST" action="/index/" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <div class="form-group">
+                      <label for="exampleFormControlFile1">请上传学生名单</label>
+                      <input class="form-control-file" type="file" name="Scores" accept=".xlsx, .xls"/>
+                      <input class="form-control-file" type="submit" value="上传"/>
+                  </div>
+                  {% if msg %}
+                    <span>
+                      {{msg}}
+                    </span>
+                  {% endif %}
+                </form>
+               
+              </div><!-- /input-group -->
+            </div><!-- /.col-lg-6 -->
+            <div class="col-lg-3">
+            </div>
+      </div>
     </div>
-    <div class="col-lg-6">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="请选择文件">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">上传</button>
-        </span>
-      </div><!-- /input-group -->
-    </div><!-- /.col-lg-6 -->
-    <div class="col-lg-3">
-    </div>
+    
 </div>
   </div>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-auto">
+      {% autoescape off %}
+        {{text}}
+      {% endautoescape %}
+    </div>
+  </div>
+</div>
 </body>
 </html>
