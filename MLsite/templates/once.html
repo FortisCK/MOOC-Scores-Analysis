@@ -1,0 +1,55 @@
+{% extends "index.html" %}
+{% block title %}
+  单次分析
+{% endblock title  %}
+{% block content %}
+<div class="uoload">
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-3">
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <form method="POST" action="/once/" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                          <label for="exampleFormControlFile1">请上传单次成绩</label>
+                          <input class="form-control-file" type="file" name="Scores" accept=".xlsx, .xls"/>
+                          <input class="form-control-file" type="submit" value="上传"/>
+                      </div>
+                      {% if msg %}
+                        <span>
+                          {{msg}}
+                        </span>
+                      {% endif %}
+                    </form>
+                   
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-3">
+                </div>
+          </div>
+        </div>
+        
+    </div>
+      </div>
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+          {% autoescape off %}
+            {{text1}}
+          {% endautoescape %}
+        </div>
+        <div class="col-md-auto">
+          {% autoescape off %}
+            {{text2}}
+          {% endautoescape %}
+        </div>
+        <div class="col-md-auto">
+          {% autoescape off %}
+            {{text3}}
+          {% endautoescape %}
+        </div>
+      </div>
+    </div>
+{% endblock content %}

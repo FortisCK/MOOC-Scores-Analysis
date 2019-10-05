@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% block title %}
+  名单
+{% endblock title  %}
+{% block content %}
+<div class="uoload">
+        <div class="container">
+          <div class="row">
+              <div class="col-lg-3">
+                </div>
+                <div class="col-lg-6">
+                  <div class="input-group">
+                    <form method="POST" action="/list/" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                          <label for="exampleFormControlFile1">请上传学生名单</label>
+                          <input class="form-control-file" type="file" name="Scores" accept=".xlsx, .xls"/>
+                          <input class="form-control-file" type="submit" value="上传"/>
+                      </div>
+                      {% if msg %}
+                        <span>
+                          {{msg}}
+                        </span>
+                      {% endif %}
+                    </form>
+                   
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-3">
+                </div>
+          </div>
+        </div>
+        
+    </div>
+      </div>
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+          {% autoescape off %}
+            {{text}}
+          {% endautoescape %}
+        </div>
+      </div>
+    </div>
+{% endblock content %}

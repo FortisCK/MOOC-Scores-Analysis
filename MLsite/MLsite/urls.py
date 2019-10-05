@@ -20,6 +20,8 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    path('index/', views.upload,),
+    path('',views.home, name='home'),
     path('admin/', admin.site.urls),
+    path('list/', views.upload, name='mingdan'),
+    path('once/', views.onceanalyse, name='once'),
 ]
